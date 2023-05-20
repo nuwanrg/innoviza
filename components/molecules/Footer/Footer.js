@@ -34,9 +34,9 @@ export const Footer = ({ className, children, ...restProps }) => {
         <SocialLinks />
 
         <div className='footer__links pt-[40px] pb-[28px]'>
-          <FooterLink href='https://bit.ly/30FUnQU'>About</FooterLink>
-          <FooterLink href='https://bit.ly/3Jfx4PB'>Careers</FooterLink>
-          <FooterLink href='https://bit.ly/30FUnQU'>FAQ&apos;s</FooterLink>
+          <FooterLink href=''>About</FooterLink>
+          <FooterLink href=''>Careers</FooterLink>
+          <FooterLink href=''>FAQ&apos;s</FooterLink>
         </div>
 
         <div className='font-normal footer__copyright text-off-black text-[14px] text-center'>

@@ -25,15 +25,15 @@ export const SocialLinks = ({ className, children, ...restProps }) => {
       className={CN(styles['social-links'], 'flex items-center', className)}
       {...restProps}>
       <SocialLink
-        href='https://twitter.com/Muffin__Tech'
+        href=''
         icon={<Twitter color='#00ACEE' />}
       />
       <SocialLink
-        href='https://t.me/muffin_tech'
+        href=''
         icon={<Telegram color='#229ED9' />}
       />
       <SocialLink
-        href='https://www.linkedin.com/company/muffin-tech'
+        href=''
         icon={<LinkedIn color='#0072b1' />}
       />
       {/* <SocialLink
