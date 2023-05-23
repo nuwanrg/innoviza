@@ -59,9 +59,9 @@ export const Hero = ({ className, children, ...restProps }) => {
           </p>
 
           <div className='hero__cta md:flex md:justify-center lg:justify-start' >
-            <Link href='#services' passHref>
+            <Link href='https://wa.me/6591322590' passHref>
               <Button
-                onClick={handleOpenSignUpModal}
+                // onClick={handleOpenSignUpModal}
                 size='sm'
                 mode='filled'
                 appearance='default'
