@@ -27,7 +27,7 @@ function ProfileDropdown() {
   };
 
   return (
-    <div className="relative inline-block text-left">
+    <div className="relative inline-block text-left  z-[100]">
       <div>
         <button
           type="button"

@@ -49,13 +49,13 @@ export const Hero = ({ className, children, ...restProps }) => {
       )}
 
       <div className='container relative z-[10]'>
-        <div className=' hero__left lg:max-w-[500px]'>
-          <h3 className='mb-[40px] text-center lg:text-left'>
-          AgentX!
+        <div className='hero__left lg:max-w-[500px]'>
+          <h3 className='mb-[40px] text-center lg:text-left text-something'>
+          AskGenie - Intelligent WhatsApp Companion
           </h3>
 
-          <p className=' mb-[100px] lg:mb-[120px] lg:pr-[10px] lg:text-md text-center max-w-[800px] lg:max-w-none mx-auto lg:mx-0 lg:text-left'>
-          AgentX is an AI-powered agent that can automate tasks, generate text and summaries, perform sentiment analysis, create images, and integrate with social media. It is cost-effective, saves time, and increases productivity, allowing you to use it on the go from anywhere. AgentX is the perfect tool for businesses and individuals looking to streamline their work and achieve their goals quickly and efficiently.
+          <p className='mb-[100px] lg:mb-[120px] lg:pr-[10px] lg:text-md text-center max-w-[800px] lg:max-w-none mx-auto lg:mx-0 lg:text-left'>
+          Chat effortlessly with AskGenie, your AI-powered assistant accessible through WhatsApp. Experience the convenience of accessing ChatGPT anywhere, anytime, directly from your mobile device. Engage in personalized conversations, seek information, and receive intelligent responses. Customizable for businesses, AskGenie empowers customers to inquire about specific products or services via WhatsApp. Join the AskGenie community and unlock the power of intelligent chats at your fingertips.
           </p>
 
           <div className='hero__cta md:flex md:justify-center lg:justify-start' >
@@ -66,7 +66,7 @@ export const Hero = ({ className, children, ...restProps }) => {
                 mode='filled'
                 appearance='default'
                 className='w-full md:w-auto lg:mr-[20px] mb-[20px] lg:mb-0'>
-                Try AgentX!
+                Try AskGenie Free
               </Button>
             </Link>
 

@@ -34,6 +34,7 @@ module.exports = {
       'white': '#ffffff',
       'off-white': 'rgba(255, 255, 255, 0.65)',
       'black': '#000',
+      'something': '#431762',
       'accordion-hover': 'rgba(255, 255, 255, 0.13)',
       'accordion-active': 'rgba(255, 255, 255, 0.16)',
     },

@@ -3,6 +3,8 @@ import { Button, Logo } from 'components/atoms'
 //import firebaseapp from '../../../hooks/firebase'; 
 import { useAuth } from "../../../contexts/AuthContext"
 import { useRouter } from 'next/router'
+import countries from './countries';
+import axios from 'axios';
 
 
 export const SignUpForm = ({ onSubmit }) => {
@@ -14,13 +16,36 @@ export const SignUpForm = ({ onSubmit }) => {
   const [loading, setLoading] = useState(false)
   const emailRef = useRef()
   const passwordRef = useRef()
+  const phoneNumberRef = useRef()
+  const mobileCodeRef = useRef()
   const router = useRouter()
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [mobileCode, setMobileCode] = useState('');
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // onSubmit({ email, password });
+    setPhoneNumber('');
+    setMobileCode('');
   };
+
+
+  const createUser = async () => {
+    try {
+      const response = await axios.post('https://2211-202-58-206-2.ap.ngrok.io/users', {
+        name: '',
+        email:  emailRef.current.value,
+        phone_number: mobileCodeRef.current.value+phoneNumberRef.current.value,
+      });
+  
+      console.log(response.data); // Handle the response data here
+    } catch (error) {
+      console.error(error); // Handle any error that occurs during the request
+    }
+  };
+
+   
 
   async function signInWithEmailPassword ()  {
     console.log("signInWithEmailPassword is called ", emailRef.current.value, passwordRef.current.value)
@@ -60,6 +85,9 @@ export const SignUpForm = ({ onSubmit }) => {
       setError("")
       setLoading(true)
       const response = await signup(email, password)
+      console.log("Successfully signup" )
+      createUser()
+      console.log("Successfully created user" )
       router.push("/Dashboard")
     } catch {
       console.log("Failed to signup", error)
@@ -97,6 +125,43 @@ export const SignUpForm = ({ onSubmit }) => {
               </Button>
 
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 border border-black">
+
+
+      <div className="mb-4">
+          <label className="block text-black text-sm font-bold">
+            Phone Number
+          </label>
+          <div className="flex">
+
+            <select
+              name="mobileCode"
+              id="mobileCode"
+              className=" shadow appearance-none border border-black rounded block w-40 py-2 pl-3 pr-8 mt-2 mr-2 text-black leading-tight focus:outline-none focus:shadow-outline"
+              value={mobileCode}
+              onChange={(e) => setMobileCode(e.target.value)}
+              ref={mobileCodeRef}
+              >
+              {countries.map((country) => (
+              <option key={country.code} value={country.mobileCode}>
+              {country.name} {country.mobileCode}
+              </option>
+              ))}
+            </select>
+            <input
+    type="text"
+    name="phoneNumber"
+    id="phoneNumber"
+    ref={phoneNumberRef}
+    className="mt-2 shadow appearance-none border border-black rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+    placeholder="Enter phone number"
+    value={phoneNumber}
+    onChange={(e) => setPhoneNumber(e.target.value)}
+  />
+          </div>
+        </div>
+
+
+
         <div className="mb-4">
           <label className="block text-black text-sm font-bold mb-2" htmlFor="email">
             Email
