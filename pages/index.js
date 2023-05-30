@@ -13,7 +13,6 @@ import {
 } from 'components/molecules'
 import { AuthProvider } from "../contexts/AuthContext"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import {Dashboard} from './Dashboard'
 export default function Home() {
   return (
     <>

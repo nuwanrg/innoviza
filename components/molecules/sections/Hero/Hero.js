@@ -26,6 +26,11 @@ export const Hero = ({ className, children, ...restProps }) => {
     // Implement form submission logic here
   };
 
+
+    const onSignUpForFree = () => {
+      window.open('http://127.0.0.1:5173/auth/signin', '_blank');
+    };
+
   return (
     <div
       className={CN(
@@ -70,11 +75,12 @@ export const Hero = ({ className, children, ...restProps }) => {
               </Button>
             </Link>
 
-            <Link href='https://calendly.com/agentx' passHref>
-              <Button size='sm' appearance='default' className='w-full md:w-auto'>
-                Schedule a Call
+            {/* <Link href='http://127.0.0.1:5173/auth/signin' passHref> */}
+              
+              <Button onClick={onSignUpForFree} size='sm' appearance='default' className='w-full md:w-auto'>
+                Sign Up for Free
               </Button>
-            </Link>
+            {/* </Link> */}
           </div>
         </div>
 

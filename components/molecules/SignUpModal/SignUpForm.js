@@ -21,15 +21,63 @@ export const SignUpForm = ({ onSubmit }) => {
   const router = useRouter()
   const [phoneNumber, setPhoneNumber] = useState('');
   const [mobileCode, setMobileCode] = useState('');
-
+  const [phoneNumberError, setPhoneNumberError] = useState('');
+  const [emailError, setEmailError] = useState('');
 
   const handleSubmit = (event) => {
+    console.log("handleSubmit is called")
     event.preventDefault();
     // onSubmit({ email, password });
-    setPhoneNumber('');
-    setMobileCode('');
+    // setPhoneNumber('');
+    // setMobileCode('');
+    // validatePhoneNumber();
+    // validateEmail();
   };
 
+
+  const validatePhoneNumber = () => {
+    console.log("validatePhoneNumber is called")
+    if (!phoneNumber) {
+      setPhoneNumberError('Phone number is required.');
+    } else {
+      setPhoneNumberError('');
+    }
+
+
+    const phonePattern = /^\+[1-9]\d{7,14}$/;
+    const phone = mobileCode + phoneNumber;
+    console.log("phone is ", phone)
+    // Check if the phone number matches the pattern
+    const isValid = phonePattern.test(phone);
+    if (!isValid) {
+      setPhoneNumberError('Phone number is invalid.');
+    } else {
+      setPhoneNumberError('');
+    }
+
+  };
+
+  const validateEmail = () => {
+    if (!email) {
+      setEmailError('Email is required.');
+    } else {
+      setEmailError('');
+    }
+
+    const emailPattern = /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/;
+
+  // Check if the email address matches the pattern
+  const isValid =  emailPattern.test(email);
+
+  if (isValid) {
+    console.log("Email is valid");
+    setEmailError('');
+  } else {
+    setEmailError('Email is invalid.');
+  }
+
+
+  };
 
   const createUser = async () => {
     try {
@@ -50,6 +98,7 @@ export const SignUpForm = ({ onSubmit }) => {
   async function signInWithEmailPassword ()  {
     console.log("signInWithEmailPassword is called ", emailRef.current.value, passwordRef.current.value)
     //e.preventDefault()
+    validateEmail();
     try {
       setError("")
       setLoading(true)
@@ -59,7 +108,7 @@ export const SignUpForm = ({ onSubmit }) => {
 
 
 
-      router.push("/Dashboard")
+      router.push("/DashboardMain")
     } catch {
       setError("Failed to log in")
     }
@@ -82,13 +131,16 @@ export const SignUpForm = ({ onSubmit }) => {
   async function signUpWithEmailPassword ()  {
     //e.preventDefault()
     try {
+      validatePhoneNumber();
+      validateEmail();
+
       setError("")
       setLoading(true)
       const response = await signup(email, password)
       console.log("Successfully signup" )
       createUser()
       console.log("Successfully created user" )
-      router.push("/Dashboard")
+      router.push("/DashboardMain")
     } catch {
       console.log("Failed to signup", error)
       setError("Failed to log in")
@@ -103,7 +155,7 @@ export const SignUpForm = ({ onSubmit }) => {
       setError("")
       setLoading(true)
       const response = await singUpWithGoogle()
-      router.push("/Dashboard")
+      router.push("/DashboardMain")
     } catch {
       console.log("Failed to signup with google", error)
       setError("Failed to signup with google")
@@ -148,16 +200,17 @@ export const SignUpForm = ({ onSubmit }) => {
               ))}
             </select>
             <input
-    type="text"
-    name="phoneNumber"
-    id="phoneNumber"
-    ref={phoneNumberRef}
-    className="mt-2 shadow appearance-none border border-black rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
-    placeholder="Enter phone number"
-    value={phoneNumber}
-    onChange={(e) => setPhoneNumber(e.target.value)}
-  />
+                type="text"
+                name="phoneNumber"
+                id="phoneNumber"
+                ref={phoneNumberRef}
+                className="mt-2 shadow appearance-none border border-black rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Enter phone number"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+            />
           </div>
+          {phoneNumberError && <p className="text-error text-xs italic">{phoneNumberError}</p>}
         </div>
 
 
@@ -176,6 +229,7 @@ export const SignUpForm = ({ onSubmit }) => {
             ref={emailRef}
           />
         </div>
+        {emailError && <p className="text-error text-xs italic">{emailError}</p>}
         <div className="mb-6">
           <label className="block text-black text-sm font-bold mb-2" htmlFor="password">
             Password
@@ -232,6 +286,7 @@ export const SignUpForm = ({ onSubmit }) => {
             ref={emailRef}
           />
         </div>
+        {emailError && <p className="text-error text-xs italic">{emailError}</p>}
         <div className="mb-6">
           <label className="block text-black text-sm font-bold mb-2" htmlFor="password">
             Password
